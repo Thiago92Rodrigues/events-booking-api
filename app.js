@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
+const mongoose = require('mongoose');
 
 const graphQlSchema = require('./graphql/schema');
 const graphQlResolvers = require('./graphql/resolvers/index');
@@ -29,6 +30,20 @@ app.use('/graphql', graphqlHttp({
     schema: graphQlSchema,
     rootValue: graphQlResolvers,
 }));
+
+
+// connect to a MongoDB database
+mongoose
+.connect(
+    'mongodb://mongo:27017/graphql-event-app',
+    { useNewUrlParser: true }
+)
+.then(() => {
+    console.log('Sucessfully connected to MongoDB');
+})
+.catch(error => {
+    console.error('Failed to connect to MongoDB - ', error);
+});
 
 
 // defines in which PORT the server is going to listen to
