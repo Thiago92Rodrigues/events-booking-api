@@ -1,15 +1,15 @@
-# build your image from a node image
+# build app image from a node image
 FROM node:12.10.0-alpine
 
-# define where your code will be place inside container directories tree
+# define where the app code will be place inside the container
 WORKDIR /usr/app
 
 # copy package.json to the container
-# and install all your dependencies in the image
+# and install all the app dependencies in the image
 COPY package*.json ./
 RUN npm install
 
-# copy your source code to the container
+# copy the app source code to the container
 COPY . .
 
 # define which ports will be exposed
