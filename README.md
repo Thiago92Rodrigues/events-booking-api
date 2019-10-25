@@ -40,3 +40,15 @@ then run it using `docker`
 ```sh
 docker-compose up
 ```
+
+### Run prettier
+
+```sh
+npx prettier --config .prettierrc.js --write "**/**/*.js"
+```
+
+### Run eslint
+
+```sh
+npx eslint "**/**/*.js"
+./node_modules/.bin/eslint "**/**/*.js"
