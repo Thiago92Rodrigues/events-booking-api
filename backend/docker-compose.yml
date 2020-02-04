@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  app:
+  server:
     build: .
     restart: always
     ports:
@@ -10,13 +10,14 @@ services:
      - db
     volumes:
      - .:/usr/app
-    container_name: node
+     - /usr/app/node_modules
+    container_name: events-booking-backend
     command: npm start
 
   db:
     image: mongo
     ports:
       - "27017:27017"
-    container_name: mongo
+    container_name: events-booking-database
     logging:
       driver: "none"
