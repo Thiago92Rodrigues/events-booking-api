@@ -1,0 +1,36 @@
+{
+  "name": "events-booking-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "format": "npx prettier --config .prettierrc.js --write '**/*.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thiago Rodrigues",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thiago92Rodrigues/events-booking-app.git"
+  },
+  "homepage": "https://github.com/Thiago92Rodrigues/events-booking-app#readme",
+  "bugs": {
+    "url": "https://github.com/Thiago92Rodrigues/events-booking-app/issues"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dataloader": "^2.0.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^14.5.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.13"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2"
+  }
+}
