@@ -22,17 +22,18 @@ only has one single endpoint (usually name `/graphql`)
 
 it only receives **POST** requests (the reason for that is **POST** requests have a body, and **GET** ones don't)
  
-it has a query language (DSL) used for telling the server which operation and data is beeing require
+it has a query language (DSL) used for telling the server which operation and data is beeing required
  
 there are two types of operations
-- **query** -> for fetching data
-- **mutation** -> for updating data (create, update, delete)
+- `query` -> for fetching data
+- `mutation` -> for updating data (create, update, delete)
 
  
 ## RUNNING THE APPLICATION
 
 to run the app simply start both backend and frontend dockers compose</br>
-to do that run the following command in both directories (backend and frontend)
+to do that run the following command in both directories (backend and frontend)</br>
+the server will be up in PORT `3000` and the react app in PORT `3001`
 ```sh
 docker-compose up
 ```
