@@ -1,5 +1,5 @@
 
-# EVENT BOOKER APP
+# EVENTS BOOKING APP
 
 - **Framework**: `NodeJS` / `Express.js`
 - **Architeture**: `GraphQl`
@@ -20,7 +20,7 @@
 
 only has one single endpoint (usually name `/graphql`)
 
-it only receives **POST** requests (the reason for that is that **POST** requests have a body, and **GET** ones don't)
+it only receives **POST** requests (the reason for that is **POST** requests have a body, and **GET** ones don't)
  
 it has a query language (DSL) used for telling the server which operation and data is beeing require
  
@@ -31,24 +31,8 @@ there are two types of operations
  
 ## RUNNING THE APPLICATION
 
-first install the project dependencies
-```sh
-npm install
-```
-
-then run it using `docker`
+to run the app simply start both backend and frontend dockers compose</br>
+to do that run the following command in both directories (backend and frontend)
 ```sh
 docker-compose up
 ```
-
-### Run prettier
-
-```sh
-npx prettier --config .prettierrc.js --write "**/**/*.js"
-```
-
-### Run eslint
-
-```sh
-npx eslint "**/**/*.js"
-./node_modules/.bin/eslint "**/**/*.js"
