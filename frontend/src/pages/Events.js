@@ -46,8 +46,8 @@ class EventsPage extends Component {
   };
 
   modalConfirmHandler = () => {
-    console.log('CONFIRM HANDLER')
-    console.log('CREATE EVENT')
+    console.log('CONFIRM HANDLER');
+    console.log('CREATE EVENT');
     this.setState({ creating: false });
 
     const title = this.title_element.current.value;
@@ -69,19 +69,25 @@ class EventsPage extends Component {
 
     const request_body = {
       query: `
-        mutation {
-          createEvent(eventInput: {title: "${title}", description: "${description}", price: "${price}", date: "${date}"}) {
-            _id
-            title
-            description
-            date
-            price
+          mutation CreateEvent($title: String!, $desc: String!, $price: Float!, $date: String!) {
+            createEvent(eventInput: {title: $title, description: $desc, price: $price, date: $date}) {
+              _id
+              title
+              description
+              date
+              price
+            }
           }
-        }
-      `
+        `,
+      variables: {
+        title: title,
+        desc: description,
+        price: price,
+        date: date
+      }
     };
-    console.log('req ', request_body)
-    console.log('token ', this.context.token)
+    console.log('req ', request_body);
+    console.log('token ', this.context.token);
 
     fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -97,7 +103,7 @@ class EventsPage extends Component {
       })
       .then((data) => {
         console.log('CREATED EVENT ', data);
-        this.setState(prevState => {
+        this.setState((prevState) => {
           const updatedEvents = [...prevState.events];
           updatedEvents.push({
             _id: data.data.createEvent._id,
@@ -129,14 +135,17 @@ class EventsPage extends Component {
 
     const request_body = {
       query: `
-        mutation {
-          bookEvent(eventId: "${this.state.selectedEvent._id}") {
-            _id
-            createdAt
-            updateAt
+          mutation BookEvent($id: ID!) {
+            bookEvent(eventId: $id) {
+              _id
+             createdAt
+             updatedAt
+            }
           }
-        }
-      `
+        `,
+      variables: {
+        id: this.state.selectedEvent._id
+      }
     };
 
     fetch('http://localhost:3000/graphql', {
