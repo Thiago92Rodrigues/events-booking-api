@@ -51,7 +51,7 @@ app.use(
 
 // connect to a MongoDB database
 mongoose
-  .connect('mongodb://mongo:27017/events-booking-db', { useNewUrlParser: true })
+  .connect('mongodb://db:27017/events-booking-db', { useNewUrlParser: true })
   .then(() => {
     console.log('Sucessfully connected to MongoDB');
   })
