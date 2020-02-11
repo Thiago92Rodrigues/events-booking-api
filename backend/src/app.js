@@ -7,7 +7,6 @@ const graphQlSchema = require('./graphql/schema');
 const graphQlResolvers = require('./graphql/resolvers/index');
 
 const checkAuthentication = require('./middleware/authenticate');
-//const { logger } = require('./middleware/logger');
 
 // initialize a express app
 const app = express();
@@ -27,7 +26,6 @@ app.use((req, res, next) => {
 });
 
 // MIDDLEWARES
-//app.use(logger);
 app.use(checkAuthentication);
 
 /**
