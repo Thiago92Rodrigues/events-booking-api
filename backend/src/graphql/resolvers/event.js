@@ -10,8 +10,10 @@ module.exports = {
    * This function returns all events registered in the database
    */
   events: async () => {
+    console.log('EVENTS');
     try {
       const events = await Event.find();
+      console.log('res ', events)
       return events.map((event) => {
         return transformEvent(event);
       });
@@ -24,6 +26,7 @@ module.exports = {
    * This function creates a new event and save it in the database
    */
   createEvent: async (args, req) => {
+    console.log('CREATE EVENT');
     // verify if the user is authenticated
     if (!req.isAuthenticated) throw new Error('User is unauthenticated.');
 
@@ -34,6 +37,7 @@ module.exports = {
       date: new Date(args.eventInput.date),
       creator: req.userId
     });
+    console.log('res ', event)
 
     try {
       const result = await event.save();

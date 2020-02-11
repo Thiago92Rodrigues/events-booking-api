@@ -7,6 +7,7 @@ module.exports = {
    * This function creates a new user and save it in the database
    */
   createUser: async (args) => {
+    console.log('CREATE USER');
     try {
       // verify if this user isn't already registered in the database
       const user = await User.findOne({ email: args.userInput.email });
@@ -19,6 +20,7 @@ module.exports = {
         email: args.userInput.email,
         password: hashedPassword
       });
+      console.log(newUser);
 
       const result = await newUser.save();
       return {
@@ -35,6 +37,7 @@ module.exports = {
    * This function logs a user in the app
    */
   login: async ({ email, password }) => {
+    console.log('LOGIN');
     try {
       // get the user data in the database
       const user = await User.findOne({ email: email });
@@ -47,7 +50,7 @@ module.exports = {
       // creates a new token for the logged user
       const token = await jwt.sign(
         { userId: user.id, email: user.email },
-        'top-secret-key',
+        'secret-key',
         { expiresIn: '1h' }
       );
 

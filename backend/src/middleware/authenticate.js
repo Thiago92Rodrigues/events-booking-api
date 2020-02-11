@@ -7,10 +7,12 @@ function isNotAuthenticated(req, next) {
 
 module.exports = (req, res, next) => {
   const authHeader = req.get('Authorization');
+  console.log('authHeader ', authHeader)
   if (!authHeader) return isNotAuthenticated(req, next);
 
   // Authentication Header = Bearer 'token'
   const token = authHeader.split(' ')[1];
+  console.log('token ', token)
   if (!token || token === '') return isNotAuthenticated(req, next);
 
   let decodedToken;
@@ -19,10 +21,12 @@ module.exports = (req, res, next) => {
   } catch (error) {
     return isNotAuthenticated(req, next);
   }
+  console.log('decodedToken ', decodedToken)
 
   if (!decodedToken) return isNotAuthenticated(req, next);
 
   req.isAuthenticated = true;
   req.userId = decodedToken.userId;
+  console.log('is authenticated ', req.isAuthenticated)
   return next();
 };

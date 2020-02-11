@@ -46,6 +46,8 @@ class EventsPage extends Component {
   };
 
   modalConfirmHandler = () => {
+    console.log('CONFIRM HANDLER')
+    console.log('CREATE EVENT')
     this.setState({ creating: false });
 
     const title = this.title_element.current.value;
@@ -53,13 +55,17 @@ class EventsPage extends Component {
     const date = this.date_element.current.value;
     const description = this.description_element.current.value;
 
+    /*
     if (
       title.trim().length === 0 ||
       date.trim().length === 0 ||
       description.trim().length === 0 ||
       !!price
-    )
+    ) {
+      console.log('error')
       return;
+    }
+    */
 
     const request_body = {
       query: `
@@ -74,6 +80,8 @@ class EventsPage extends Component {
         }
       `
     };
+    console.log('req ', request_body)
+    console.log('token ', this.context.token)
 
     fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -88,35 +96,21 @@ class EventsPage extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('DATA ', data);
-        const new_event = {
-          _id: data.data.createEvent._id,
-          title: data.data.createEvent.title,
-          description: data.data.createEvent.description,
-          date: data.data.createEvent.date,
-          price: data.data.createEvent.price,
-          creator: {
-            _id: this.context.userId
-          }
-        };
-        this.state.events.push(new_event);
-
-        /*
+        console.log('CREATED EVENT ', data);
         this.setState(prevState => {
           const updatedEvents = [...prevState.events];
           updatedEvents.push({
-            _id: resData.data.createEvent._id,
-            title: resData.data.createEvent.title,
-            description: resData.data.createEvent.description,
-            date: resData.data.createEvent.date,
-            price: resData.data.createEvent.price,
+            _id: data.data.createEvent._id,
+            title: data.data.createEvent.title,
+            description: data.data.createEvent.description,
+            date: data.data.createEvent.date,
+            price: data.data.createEvent.price,
             creator: {
               _id: this.context.userId
             }
           });
           return { events: updatedEvents };
         });
-        */
       })
       .catch((error) => {
         console.error(error);
@@ -158,7 +152,7 @@ class EventsPage extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('Data ', data);
+        console.log('BOOKED EVENT ', data);
         this.setState({ selectedEvent: null });
       })
       .catch((error) => {
@@ -199,7 +193,7 @@ class EventsPage extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log('Fetched Events ', data);
+        console.log('FETCHED EVENTS ', data);
         const events = data.data.events;
         if (this.is_active)
           this.setState({ events: events, is_loading: false });
