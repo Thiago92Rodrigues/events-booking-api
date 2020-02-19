@@ -9,3 +9,4 @@ services:
      - .:/usr/app
      - /usr/app/node_modules
     container_name: events-booking-frontend
+    command: npm start
