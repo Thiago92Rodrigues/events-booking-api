@@ -9,8 +9,14 @@
 .booking__list__item {
   margin: 0.5rem 0;
   padding: 0.5rem;
-  border: 1px solid #5101d1;
+  background: #f4f4f4;
+  border-radius: 3px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.booking__item__data {
+  margin: 2%;
+  color: #474747;
 }

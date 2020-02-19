@@ -5,17 +5,18 @@
 
 .booking__control button {
   font: inherit;
+  font-size: 1.0rem;
   border: none;
   background: transparent;
-  color: black;
+  color: #474747;
   padding: 0.25rem 3rem;
   border-bottom: 2px solid transparent;
   cursor: pointer;
 }
 
 .booking__control button.active {
-  border-bottom-color: #5101d1;
-  color: #5101d1;
+  border-bottom-color: #e24d4d;
+  color: #e24d4d;
 }
 
 .booking__control button:focus {

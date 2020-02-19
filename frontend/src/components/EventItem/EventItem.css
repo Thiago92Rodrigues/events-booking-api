@@ -1,24 +1,27 @@
 .event__list__item {
   margin: 1rem 0;
   padding: 1rem;
-  border: 1px solid #5101d1;
+  background: #f4f4f4;
+  border-radius: 3px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.event__list__item h1 {
+.event__list__item .title {
   margin: 0;
   font-size: 1.5rem;
-  color: #5101d1;
+  color: #e24d4d;
 }
 
-.event__list__item h2 {
+.event__list__item .info {
   margin: 0;
-  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
   color: #7c7c7c;
 }
 
 .event__list__item p {
   margin: 0;
+  color: #474747;
 }

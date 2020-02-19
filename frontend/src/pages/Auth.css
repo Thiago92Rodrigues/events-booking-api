@@ -1,13 +1,14 @@
 .auth__form {
   width: 25rem;
   max-width: 80%;
-  margin: 5rem auto;
+  margin: 0.5rem auto;
 }
 
 .auth__form .form-control label,
 .auth__form .form-control input {
   width: 100%;
   display: block;
+  color: #474747;
 }
 
 .auth__form .form-control label {
@@ -19,19 +20,28 @@
 }
 
 .auth__form .form-actions button {
-  background: #01d1d1;
   font: inherit;
-  border: 1px solid #01d1d1;
+  background: #e24d4d;
+  border: 1px solid #e24d4d;
   border-radius: 3px;
   padding: 0.25rem 1rem;
   margin-right: 1rem;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.26);
-  color: white;
+  color: #f9f9f9;
   cursor: pointer;
 }
 
 .auth__form .form-actions button:hover,
 .auth__form .form-actions button:active {
-  background: #01a7a7;
-  border-color: #01a7a7;
+  background: #e24d4d;
+  border-color: #e24d4d;
+  opacity: 0.7;
+}
+
+.auth__header {
+  padding: 3% 15% 0 35%;
+  font-size: 1.5rem;
+  line-height: 3.4rem;
+  color: #474747;
+  white-space: nowrap;
 }

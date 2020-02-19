@@ -19,11 +19,16 @@ body {
   margin-bottom: 1rem;
 }
 
+.form-control label,
+.form-control input {
+  color: #474747;
+}
+
 .form-actions button,
 .btn {
-  background: #5101d1;
+  background: #e24d4d;
   font: inherit;
-  border: 1px solid #5101d1;
+  border: 1px solid #e24d4d;
   border-radius: 3px;
   padding: 0.25rem 1rem;
   margin-right: 1rem;
@@ -36,6 +41,7 @@ body {
 .form-actions button:active,
 .btn:hover,
 .btn:active {
-  background: #6219d6;
-  border-color: #6219d6;
+  background: #e24d4d;
+  border-color: #e24d4d;
+  opacity: 0.7;
 }

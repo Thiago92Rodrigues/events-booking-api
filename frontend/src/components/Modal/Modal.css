@@ -1,26 +1,45 @@
 .modal {
   width: 90%;
-  background: white;
+  background: #f4f4f4;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   position: fixed;
   top: 20vh;
   left: 5%;
   z-index: 100;
+  border-radius: 3px;
 }
 
 .modal__header {
   padding: 1rem;
-  background: #5101d1;
+  background: #e24d4d;
   color: white;
 }
 
-.modal__header h1 {
+.modal__header span {
   margin: 0;
   font-size: 1.25rem;
 }
 
 .modal__content {
   padding: 1rem;
+}
+
+.modal__content .price {
+  margin: 0;
+  font-size: 1rem;
+  color: #e24d4d;
+}
+
+.modal__content .date {
+  margin-left: 30%;
+  font-size: 1rem;
+  color: #e24d4d;
+}
+
+.modal__content p {
+  margin: 5% 0 5% 0;
+  font-size: 0.9rem;
+  color: #474747;
 }
 
 .modal__actions {

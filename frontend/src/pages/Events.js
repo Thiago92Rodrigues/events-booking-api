@@ -281,11 +281,12 @@ class EventsPage extends Component {
             onConfirm={this.bookEventHandler}
             confirmText={this.context.token ? 'Book' : 'Confirm'}
           >
-            <h1>{this.state.selectedEvent.title}</h1>
-            <h2>
-              ${this.state.selectedEvent.price} -{' '}
-              {new Date(this.state.selectedEvent.date).toLocaleDateString()}
-            </h2>
+            <span className="price">
+              Price: ${this.state.selectedEvent.price}
+            </span>
+            <span className="date">
+              Date: {new Date(this.state.selectedEvent.date).toLocaleDateString()}
+            </span>
             <p>{this.state.selectedEvent.description}</p>
           </Modal>
         )}

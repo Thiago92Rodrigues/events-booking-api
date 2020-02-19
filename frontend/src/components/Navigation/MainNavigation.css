@@ -1,21 +1,25 @@
 .main__navbar {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100%;
   height: 3.5rem;
-  background: #5101d1;
   padding: 0 2rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+  white-space: nowrap;
+  border-bottom: 1px solid #f9f9f9;
+  background: #f4f4f4;
+  overflow: hidden;
 }
 
-.main__navbar__logo h1 {
+.main__navbar__logo span {
   margin: 0;
   font-size: 1.5rem;
-  color: #dfcefc;
+  color: #e24d4d;
 }
 
 .main__navbar__items {
@@ -31,13 +35,14 @@
 }
 
 .main__navbar__items li {
+  cursor: pointer;
   margin: 0 1rem;
 }
 
 .main__navbar__items a,
 .main__navbar__items button {
   text-decoration: none;
-  color: white;
+  color: #474747;
   padding: 0.25rem 0.5rem;
   border: none;
   font: inherit;
@@ -48,11 +53,6 @@
 }
 
 .main__navbar__items a:hover,
-.main__navbar__items a:active,
-.main__navbar__items a.active,
-.main__navbar__items button:hover,
-.main__navbar__items button:active {
-  background: #ffffff;
-  color: #5101d1;
-  border-radius: 5px;
+.main__navbar__items button:hover {
+  color: #e24d4d;
 }

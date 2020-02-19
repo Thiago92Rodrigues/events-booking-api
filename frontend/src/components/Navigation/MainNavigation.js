@@ -13,7 +13,7 @@ const mainNavigation = (props) => (
       return (
         <header className="main__navbar">
           <div className="main__navbar__logo">
-            <h1>The NavBar</h1>
+            <span>Events Bookings</span>
           </div>
 
           <nav className="main__navbar__items">

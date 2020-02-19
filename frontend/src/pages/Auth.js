@@ -104,6 +104,8 @@ class AuthPage extends Component {
 
   render() {
     return (
+      <React.Fragment>
+      <span className="auth__header">{this.state.is_login ? 'Login' : 'Sign Up'}</span>
       <form className="auth__form" onSubmit={this.submitHandler}>
         <div className="form-control">
           <label htmlFor="email">Email</label>
@@ -118,10 +120,11 @@ class AuthPage extends Component {
         <div className="form-actions">
           <button type="submit">Submit</button>
           <button type="button" onClick={this.switchModeHandler}>
-            Switch to {this.state.is_login ? 'SignUp' : 'Login'}
+            Switch to {this.state.is_login ? 'Sign Up' : 'Login'}
           </button>
         </div>
       </form>
+      </React.Fragment>
     );
   }
 }

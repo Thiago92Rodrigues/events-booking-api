@@ -7,7 +7,7 @@ const modal = (props) => {
   return (
     <div className="modal">
       <header className="modal__header">
-        <h1>{props.title}</h1>
+        <span>{props.title}</span>
       </header>
 
       <section className="modal__content">{props.children}</section>
