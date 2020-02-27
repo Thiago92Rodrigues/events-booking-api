@@ -10,6 +10,12 @@ import Chart from '../components/BookingChart/BookingChart';
 // Contexts
 import AuthContext from '../context/auth-context';
 
+import {
+  buildGetBookingsRequest,
+  buildCancelBookingRequest,
+  sendRequestWithAuthentication
+} from '../utils/api-requests';
+
 class BookingsPage extends Component {
   state = {
     is_loading: false,
@@ -24,40 +30,21 @@ class BookingsPage extends Component {
   }
 
   fetchBookings = () => {
+    console.log('FETCH BOOKINGS');
+
     this.setState({ is_loading: true });
 
-    const request_body = {
-      query: `
-        query {
-          bookings {
-            _id
-            createdAt
-            event {
-              _id
-              title
-              date
-              price
-            }
-          }
-        }
-      `
-    };
+    const request_body = buildGetBookingsRequest();
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.context.token
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequestWithAuthentication(request_body, this.context.token)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
-      .then((data) => {
-        console.log('Fetched Events ', data);
-        const bookings = data.data.bookings;
+      .then((response) => {
+        console.log('response ', response);
+        const bookings = response.data.bookings;
         this.setState({ bookings: bookings, is_loading: false });
       })
       .catch((error) => {
@@ -67,33 +54,17 @@ class BookingsPage extends Component {
   };
 
   deleteBookingHandler = (booking_id) => {
+    console.log('DELETE BOOKING');
+
     this.setState({ is_loading: true });
 
-    const request_body = {
-      query: `
-          mutation CancelBooking($id: ID!) {
-            cancelBooking(bookingId: $id) {
-            _id
-             title
-            }
-          }
-        `,
-      variables: {
-        id: booking_id
-      }
-    };
+    const request_body = buildCancelBookingRequest(booking_id);
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.context.token
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequestWithAuthentication(request_body, this.context.token)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
       .then((data) => {
         this.setState((prevState) => {
