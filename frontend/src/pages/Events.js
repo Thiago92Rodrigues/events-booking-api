@@ -13,6 +13,13 @@ import AuthContext from '../context/auth-context';
 // Style
 import './Events.css';
 
+import {
+  buildCreateEventRequest,
+  buildBookEventRequest,
+  buildGetEventsRequest,
+  sendRequest
+} from '../utils/api-requests';
+
 class EventsPage extends Component {
   state = {
     creating: false,
@@ -67,27 +74,12 @@ class EventsPage extends Component {
     }
     */
 
-    const request_body = {
-      query: `
-          mutation CreateEvent($title: String!, $desc: String!, $price: Float!, $date: String!) {
-            createEvent(eventInput: {title: $title, description: $desc, price: $price, date: $date}) {
-              _id
-              title
-              description
-              date
-              price
-            }
-          }
-        `,
-      variables: {
-        title: title,
-        desc: description,
-        price: price,
-        date: date
-      }
-    };
-    console.log('req ', request_body);
-    console.log('token ', this.context.token);
+    const request_body = buildCreateEventRequest(
+      title,
+      description,
+      price,
+      date
+    );
 
     fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -133,20 +125,7 @@ class EventsPage extends Component {
       return;
     }
 
-    const request_body = {
-      query: `
-          mutation BookEvent($id: ID!) {
-            bookEvent(eventId: $id) {
-              _id
-             createdAt
-             updatedAt
-            }
-          }
-        `,
-      variables: {
-        id: this.state.selectedEvent._id
-      }
-    };
+    const request_body = buildBookEventRequest(this.state.selectedEvent._id);
 
     fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -172,34 +151,13 @@ class EventsPage extends Component {
   fetchEvents = () => {
     this.setState({ is_loading: true });
 
-    const request_body = {
-      query: `
-        query {
-          events {
-            _id
-            title
-            description
-            date
-            price
-            creator {
-              _id
-              email
-            }
-          }
-        }
-      `
-    };
+    const request_body = buildGetEventsRequest();
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequest(request_body)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
       .then((data) => {
         console.log('FETCHED EVENTS ', data);
@@ -285,7 +243,8 @@ class EventsPage extends Component {
               Price: ${this.state.selectedEvent.price}
             </span>
             <span className="date">
-              Date: {new Date(this.state.selectedEvent.date).toLocaleDateString()}
+              Date:{' '}
+              {new Date(this.state.selectedEvent.date).toLocaleDateString()}
             </span>
             <p>{this.state.selectedEvent.description}</p>
           </Modal>

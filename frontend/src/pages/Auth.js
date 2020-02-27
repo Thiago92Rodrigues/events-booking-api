@@ -7,10 +7,15 @@ import AuthContext from '../context/auth-context';
 // Style
 import './Auth.css';
 
+import {
+  buildLoginRequest,
+  buildCreateUserRequest,
+  sendRequest
+} from '../utils/api-requests';
+
 class AuthPage extends Component {
-  // state inform in which mode the user is
-  // login mode or signup mode
   state = {
+    // in which mode the user is: login mode or signup mode
     is_login: true
   };
 
@@ -22,19 +27,15 @@ class AuthPage extends Component {
     this.password_element = React.createRef();
   }
 
-  // alters the current mode
   switchModeHandler = () => {
     this.setState((prevState) => {
       return { is_login: !prevState.is_login };
     });
   };
 
-  // sends a request when user click submit
-  // a login request when in login mode or a create-user request when in signup mode
   submitHandler = (event) => {
     event.preventDefault();
 
-    // get inputs
     const email = this.email_element.current.value;
     const password = this.password_element.current.value;
 
@@ -44,56 +45,24 @@ class AuthPage extends Component {
     let request_body;
 
     if (this.state.is_login) {
-      request_body = {
-        query: `
-        query Login($email: String!, $password: String!) {
-          login(email: $email, password: $password) {
-            userId
-            token
-            tokenExpiration
-          }
-        }
-      `,
-        variables: {
-          email: email,
-          password: password
-        }
-      };
+      request_body = buildLoginRequest(email, password);
     } else {
-      request_body = {
-        query: `
-          mutation CreateUser($email: String!, $password: String!) {
-            createUser(userInput: {email: $email, password: $password}) {
-              _id
-              email
-            }
-          }
-        `,
-        variables: {
-          email: email,
-          password: password
-        }
-      };
+      request_body = buildCreateUserRequest(email, password);
     }
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequest(request_body)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
-      .then((data) => {
-        console.log('DATA ', data);
-        if (data.data.login) {
+      .then((response) => {
+        console.log('response ', response);
+        if (response.data.login) {
           this.context.login(
-            data.data.login.token,
-            data.data.login.userId,
-            data.data.login.tokenExpiration
+            response.data.login.token,
+            response.data.login.userId,
+            response.data.login.tokenExpiration
           );
         }
       })
@@ -105,25 +74,30 @@ class AuthPage extends Component {
   render() {
     return (
       <React.Fragment>
-      <span className="auth__header">{this.state.is_login ? 'Login' : 'Sign Up'}</span>
-      <form className="auth__form" onSubmit={this.submitHandler}>
-        <div className="form-control">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" ref={this.email_element} />
-        </div>
+        <span className="auth__header">
+          {this.state.is_login ? 'Login' : 'Sign Up'}
+        </span>
 
-        <div className="form-control">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" ref={this.password_element} />
-        </div>
+        <form className="auth__form" onSubmit={this.submitHandler}>
+          <div className="form-control">
+            <label htmlFor="email">Email</label>
+            <input type="email" id="email" ref={this.email_element} />
+          </div>
 
-        <div className="form-actions">
-          <button type="submit">Submit</button>
-          <button type="button" onClick={this.switchModeHandler}>
-            Switch to {this.state.is_login ? 'Sign Up' : 'Login'}
-          </button>
-        </div>
-      </form>
+          <div className="form-control">
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" ref={this.password_element} />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit">Submit</button>
+
+            {/* Switch page's mode button */}
+            <button type="button" onClick={this.switchModeHandler}>
+              Switch to {this.state.is_login ? 'Sign Up' : 'Login'}
+            </button>
+          </div>
+        </form>
       </React.Fragment>
     );
   }
