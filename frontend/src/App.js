@@ -17,7 +17,7 @@ import AuthContext from './context/auth-context';
 import './App.css';
 
 class App extends Component {
-  // state inform if the user is logged in or not
+  // control if the user is logged in or not
   state = {
     token: null,
     userId: null

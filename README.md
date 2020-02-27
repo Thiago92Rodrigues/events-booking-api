@@ -1,8 +1,9 @@
 
 # EVENTS BOOKING APP
 
-- **Framework**: `NodeJS` / `Express.js`
-- **Architeture**: `GraphQl`
+- **Backend**: `NodeJS` / `Express.js`
+- **Frontend**: `React.js`
+- **API Architeture**: `GraphQl`
 - **Database**: `MongoDB`
 
 

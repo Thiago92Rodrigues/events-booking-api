@@ -8,9 +8,7 @@ const eventItem = (props) => {
     <li key={props.id} className="event__list__item">
       <div>
         <span className="title">{props.title}</span>
-        <p className="info">
-          Price: ${props.price}
-        </p>
+        <p className="info">Price: ${props.price}</p>
         <p className="info">
           Date: {new Date(props.date).toLocaleDateString()}
         </p>
