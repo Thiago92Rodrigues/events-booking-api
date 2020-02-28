@@ -8,7 +8,7 @@ import EventList from '../components/EventList/EventList';
 import Spinner from '../components/Spinner/Spinner';
 
 // Contexts
-import AuthContext from '../context/auth-context';
+import AuthContext from '../context/authContext';
 
 // Style
 import './Events.css';
@@ -16,15 +16,19 @@ import './Events.css';
 import {
   buildCreateEventRequest,
   buildBookEventRequest,
-  buildGetEventsRequest,
-  sendRequest
-} from '../utils/api-requests';
+  buildGetEventsRequest
+} from '../utils/queryBuilder';
+
+import {
+  sendRequest,
+  sendRequestWithAuthentication
+} from '../utils/requestsAPI';
 
 class EventsPage extends Component {
   state = {
     creating: false,
+    loading: false,
     events: [],
-    is_loading: false,
     selectedEvent: null
   };
 
@@ -53,26 +57,14 @@ class EventsPage extends Component {
   };
 
   modalConfirmHandler = () => {
-    console.log('CONFIRM HANDLER');
     console.log('CREATE EVENT');
+
     this.setState({ creating: false });
 
     const title = this.title_element.current.value;
     const price = +this.price_element.current.value;
     const date = this.date_element.current.value;
     const description = this.description_element.current.value;
-
-    /*
-    if (
-      title.trim().length === 0 ||
-      date.trim().length === 0 ||
-      description.trim().length === 0 ||
-      !!price
-    ) {
-      console.log('error')
-      return;
-    }
-    */
 
     const request_body = buildCreateEventRequest(
       title,
@@ -81,28 +73,22 @@ class EventsPage extends Component {
       date
     );
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.context.token
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequestWithAuthentication(request_body, this.context.token)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
-      .then((data) => {
-        console.log('CREATED EVENT ', data);
+      .then((response) => {
+        console.log('response ', response);
         this.setState((prevState) => {
           const updatedEvents = [...prevState.events];
           updatedEvents.push({
-            _id: data.data.createEvent._id,
-            title: data.data.createEvent.title,
-            description: data.data.createEvent.description,
-            date: data.data.createEvent.date,
-            price: data.data.createEvent.price,
+            _id: response.data.createEvent._id,
+            title: response.data.createEvent.title,
+            description: response.data.createEvent.description,
+            date: response.data.createEvent.date,
+            price: response.data.createEvent.price,
             creator: {
               _id: this.context.userId
             }
@@ -120,6 +106,8 @@ class EventsPage extends Component {
   };
 
   bookEventHandler = () => {
+    console.log('BOOK EVENT');
+
     if (!this.context.token) {
       this.setState({ selectedEvent: null });
       return;
@@ -127,20 +115,14 @@ class EventsPage extends Component {
 
     const request_body = buildBookEventRequest(this.state.selectedEvent._id);
 
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST',
-      body: JSON.stringify(request_body),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.context.token
-      }
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) throw new Error('Failed');
-        return res.json();
+    sendRequestWithAuthentication(request_body, this.context.token)
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201)
+          throw new Error('Failed');
+        return response.json();
       })
-      .then((data) => {
-        console.log('BOOKED EVENT ', data);
+      .then((response) => {
+        console.log('response ', response);
         this.setState({ selectedEvent: null });
       })
       .catch((error) => {
@@ -149,7 +131,9 @@ class EventsPage extends Component {
   };
 
   fetchEvents = () => {
-    this.setState({ is_loading: true });
+    console.log('FETCH EVENTS');
+
+    this.setState({ loading: true });
 
     const request_body = buildGetEventsRequest();
 
@@ -159,15 +143,14 @@ class EventsPage extends Component {
           throw new Error('Failed');
         return response.json();
       })
-      .then((data) => {
-        console.log('FETCHED EVENTS ', data);
-        const events = data.data.events;
-        if (this.is_active)
-          this.setState({ events: events, is_loading: false });
+      .then((response) => {
+        console.log('response ', response);
+        const events = response.data.events;
+        if (this.is_active) this.setState({ events: events, loading: false });
       })
       .catch((error) => {
         console.error(error);
-        if (this.is_active) this.setState({ is_loading: false });
+        if (this.is_active) this.setState({ loading: false });
       });
   };
 
@@ -259,7 +242,7 @@ class EventsPage extends Component {
           </div>
         )}
 
-        {this.state.is_loading ? (
+        {this.state.loading ? (
           <Spinner />
         ) : (
           <EventList
