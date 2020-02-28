@@ -11,7 +11,7 @@ import EventsPage from './pages/Events';
 import BookingsPage from './pages/Bookings';
 
 // Contexts
-import AuthContext from './context/auth-context';
+import AuthContext from './context/authContext';
 
 // Style
 import './App.css';

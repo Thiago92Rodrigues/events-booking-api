@@ -2,16 +2,17 @@ import React from 'react';
 import { Component } from 'react';
 
 // Contexts
-import AuthContext from '../context/auth-context';
+import AuthContext from '../context/authContext';
 
 // Style
 import './Auth.css';
 
 import {
   buildLoginRequest,
-  buildCreateUserRequest,
-  sendRequest
-} from '../utils/api-requests';
+  buildCreateUserRequest
+} from '../utils/queryBuilder';
+
+import { sendRequest } from '../utils/requestsAPI';
 
 class AuthPage extends Component {
   state = {
@@ -45,8 +46,10 @@ class AuthPage extends Component {
     let request_body;
 
     if (this.state.is_login) {
+      console.log('LOGIN');
       request_body = buildLoginRequest(email, password);
     } else {
+      console.log('CREATE USER');
       request_body = buildCreateUserRequest(email, password);
     }
 

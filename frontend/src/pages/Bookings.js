@@ -8,17 +8,18 @@ import BookingControl from '../components/BookingControl/BookingControl';
 import Chart from '../components/BookingChart/BookingChart';
 
 // Contexts
-import AuthContext from '../context/auth-context';
+import AuthContext from '../context/authContext';
 
 import {
   buildGetBookingsRequest,
-  buildCancelBookingRequest,
-  sendRequestWithAuthentication
-} from '../utils/api-requests';
+  buildCancelBookingRequest
+} from '../utils/queryBuilder';
+
+import { sendRequestWithAuthentication } from '../utils/requestsAPI';
 
 class BookingsPage extends Component {
   state = {
-    is_loading: false,
+    loading: false,
     bookings: [],
     outputType: 'list'
   };
@@ -32,7 +33,7 @@ class BookingsPage extends Component {
   fetchBookings = () => {
     console.log('FETCH BOOKINGS');
 
-    this.setState({ is_loading: true });
+    this.setState({ loading: true });
 
     const request_body = buildGetBookingsRequest();
 
@@ -45,18 +46,18 @@ class BookingsPage extends Component {
       .then((response) => {
         console.log('response ', response);
         const bookings = response.data.bookings;
-        this.setState({ bookings: bookings, is_loading: false });
+        this.setState({ bookings: bookings, loading: false });
       })
       .catch((error) => {
         console.error(error);
-        this.setState({ is_loading: false });
+        this.setState({ loading: false });
       });
   };
 
   deleteBookingHandler = (booking_id) => {
     console.log('DELETE BOOKING');
 
-    this.setState({ is_loading: true });
+    this.setState({ loading: true });
 
     const request_body = buildCancelBookingRequest(booking_id);
 
@@ -66,17 +67,17 @@ class BookingsPage extends Component {
           throw new Error('Failed');
         return response.json();
       })
-      .then((data) => {
+      .then((response) => {
         this.setState((prevState) => {
           const updatedBookings = prevState.bookings.filter((booking) => {
             return booking._id !== booking_id;
           });
-          return { bookings: updatedBookings, is_loading: false };
+          return { bookings: updatedBookings, loading: false };
         });
       })
       .catch((error) => {
         console.error(error);
-        this.setState({ is_loading: false });
+        this.setState({ loading: false });
       });
   };
 
@@ -90,7 +91,7 @@ class BookingsPage extends Component {
 
   render() {
     let content;
-    if (this.state.is_loading) {
+    if (this.state.loading) {
       content = <Spinner />;
     } else {
       content = (
