@@ -6,26 +6,17 @@ const mongoose = require('mongoose');
 const graphQlSchema = require('./graphql/schema');
 const graphQlResolvers = require('./graphql/resolvers/index');
 
-const checkAuthentication = require('./middleware/authenticate');
+const checkAuthentication = require('./middleware/authentication');
+const cors = require('./middleware/cors');
 
-// initialize a express app
 const app = express();
 
 // add a parser for JSON format requests
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-  if (req.method === 'OPTIONS') return res.sendStatus(200);
-
-  next();
-});
-
 // MIDDLEWARES
+app.use(cors);
 app.use(checkAuthentication);
 
 /**
@@ -59,10 +50,4 @@ mongoose
     console.error('Failed to connect to MongoDB - ', error);
   });
 
-// defines in which PORT the server is going to listen to
-const PORT = 3000;
-const HOST = '0.0.0.0';
-
-const server = app.listen(PORT, HOST, () => {
-  console.log(`Server is running on port ${server.address().port}`);
-});
+module.exports = app;
