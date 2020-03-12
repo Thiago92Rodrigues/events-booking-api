@@ -1,12 +1,12 @@
-version: "3"
+version: '3'
 
 services:
   app:
-    build: .
-    ports:
-      - "3001:3000"
-    volumes:
-     - .:/usr/app
-     - /usr/app/node_modules
+    image: node:12.10.0-alpine
     container_name: events-booking-frontend
-    command: npm start
+    ports:
+      - '3001:3000'
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    command: sh -c "cd /usr/app && npm i && npm start"
