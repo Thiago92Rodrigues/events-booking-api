@@ -15,8 +15,8 @@ services:
 
   db:
     image: mongo
+    container_name: events-booking-database
     ports:
       - '27017:27017'
-    container_name: events-booking-database
     logging:
       driver: 'none'
