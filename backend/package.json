@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app.js",
+    "start": "nodemon src/bin/www",
     "format": "npx prettier --config .prettierrc.js --write '**/*.js'",
     "lint": "npx eslint '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "eslint": "^6.5.1",
-    "nodemon": "^1.19.2",
-    "prettier": "^1.18.2"
+    "nodemon": "^1.19.2"
   }
 }
