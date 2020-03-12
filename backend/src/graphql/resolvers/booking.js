@@ -1,11 +1,8 @@
-const Booking = require('../../models/booking');
-const Event = require('../../models/event');
+const Booking = require('../../models/Booking');
+const Event = require('../../models/Event');
 const { transformBooking, transformEvent } = require('./util');
 
 module.exports = {
-  /**
-   * This function returns all bookings registered in the database
-   */
   bookings: async (args, req) => {
     console.log('BOOKINGS');
     // verify if the user is authenticated
@@ -22,9 +19,6 @@ module.exports = {
     }
   },
 
-  /**
-   * This function creates a new booking from an existing event
-   */
   bookEvent: async (args, req) => {
     console.log('BOOK EVENT');
     // verify if the user is authenticated
@@ -45,9 +39,6 @@ module.exports = {
     }
   },
 
-  /**
-   * This function deletes an existing booking
-   */
   cancelBooking: async (args, req) => {
     console.log('CANCEL BOOKING');
     // verify if the user is authenticated

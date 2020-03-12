@@ -1,19 +1,16 @@
-const Event = require('../../models/event');
-const User = require('../../models/user');
+const Event = require('../../models/Event');
+const User = require('../../models/User');
 const { transformEvent } = require('./util');
 
 // ._doc means get the returned data from mongoose without the metadata, with only the relevant data
 // _id is registered in the database in a MongoDB special type, so we need to convert it to a string
 
 module.exports = {
-  /**
-   * This function returns all events registered in the database
-   */
   events: async () => {
     console.log('EVENTS');
     try {
       const events = await Event.find();
-      console.log('res ', events)
+      console.log('res ', events);
       return events.map((event) => {
         return transformEvent(event);
       });
@@ -22,9 +19,6 @@ module.exports = {
     }
   },
 
-  /**
-   * This function creates a new event and save it in the database
-   */
   createEvent: async (args, req) => {
     console.log('CREATE EVENT');
     // verify if the user is authenticated
@@ -37,7 +31,7 @@ module.exports = {
       date: new Date(args.eventInput.date),
       creator: req.userId
     });
-    console.log('res ', event)
+    console.log('res ', event);
 
     try {
       const result = await event.save();

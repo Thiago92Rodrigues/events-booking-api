@@ -1,11 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../../models/user');
+const User = require('../../models/User');
 
 module.exports = {
-  /**
-   * This function creates a new user and save it in the database
-   */
   createUser: async (args) => {
     console.log('CREATE USER');
     try {
@@ -33,9 +30,6 @@ module.exports = {
     }
   },
 
-  /**
-   * This function logs a user in the app
-   */
   login: async ({ email, password }) => {
     console.log('LOGIN');
     try {
