@@ -10,18 +10,20 @@ import AuthPage from './pages/Auth';
 import EventsPage from './pages/Events';
 import BookingsPage from './pages/Bookings';
 
-// Contexts
+// Context
 import AuthContext from './context/authContext';
 
 // Style
 import './App.css';
 
 class App extends Component {
-  // control if the user is logged in or not
-  state = {
-    token: null,
-    userId: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: null,
+      userId: null
+    };
+  }
 
   login = (token, userId, tokenExpiration) => {
     this.setState({ token: token, userId: userId });
