@@ -1,6 +1,6 @@
 const Booking = require('../../models/Booking');
 const Event = require('../../models/Event');
-const { transformBooking, transformEvent } = require('./util');
+const { dateToString } = require('../../util/helpers');
 
 module.exports = {
   bookings: async (args, req) => {
@@ -9,10 +9,16 @@ module.exports = {
     if (!req.isAuthenticated) throw new Error('User is unauthenticated.');
 
     try {
-      const bookings = await Booking.find({ user: req.userId });
-      console.log('res ', bookings);
+      const bookings = await Booking.find({ user: req.userId })
+        .populate('event')
+        .populate('user');
+      console.log('result ', bookings);
       return bookings.map((booking) => {
-        return transformBooking(booking);
+        return {
+          ...booking._doc,
+          createdAt: dateToString(booking._doc.createdAt),
+          updatedAt: dateToString(booking._doc.updatedAt)
+        };
       });
     } catch (error) {
       throw error;
@@ -25,15 +31,18 @@ module.exports = {
     if (!req.isAuthenticated) throw new Error('User is unauthenticated.');
 
     try {
-      const fetchedEvent = await Event.findOne({ _id: args.eventId });
+      const fetchedEvent = await Event.findById(args.eventId);
       const booking = new Booking({
         user: req.userId,
         event: fetchedEvent
       });
-      console.log('res ', booking);
-
+      console.log('result ', booking);
       const result = await booking.save();
-      return transformBooking(result);
+      return {
+        ...result._doc,
+        createdAt: dateToString(booking._doc.createdAt),
+        updatedAt: dateToString(booking._doc.updatedAt)
+      };
     } catch (error) {
       throw error;
     }
@@ -45,12 +54,8 @@ module.exports = {
     if (!req.isAuthenticated) throw new Error('User is unauthenticated.');
 
     try {
-      const booking = await Booking.findById(args.bookingId).populate('event');
-      const event = transformEvent(booking.event);
-
-      await Booking.deleteOne({ _id: args.bookingId });
-
-      return event;
+      await Booking.findByIdAndDelete(args.bookingId);
+      return;
     } catch (error) {
       throw error;
     }
