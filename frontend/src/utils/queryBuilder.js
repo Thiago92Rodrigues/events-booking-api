@@ -115,10 +115,7 @@ const buildCancelBookingRequest = (id) => {
   return {
     query: `
         mutation CancelBooking($id: ID!) {
-          cancelBooking(bookingId: $id) {
-            _id
-            title
-          }
+          cancelBooking(bookingId: $id) {}
         }
       `,
     variables: {
