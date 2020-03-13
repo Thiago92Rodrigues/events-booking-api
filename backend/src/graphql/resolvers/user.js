@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const User = require('../../models/User');
 
 module.exports = {
@@ -17,12 +18,11 @@ module.exports = {
         email: args.userInput.email,
         password: hashedPassword
       });
-      console.log(newUser);
+      console.log('result', newUser);
 
       const result = await newUser.save();
       return {
         ...result._doc,
-        _id: result.id,
         password: null
       };
     } catch (error) {
