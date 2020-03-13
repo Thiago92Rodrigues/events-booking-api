@@ -1,6 +1,6 @@
 const Event = require('../../models/Event');
 const User = require('../../models/User');
-const { transformEvent } = require('./util');
+const { dateToString } = require('../../util/helpers');
 
 // ._doc means get the returned data from mongoose without the metadata, with only the relevant data
 // _id is registered in the database in a MongoDB special type, so we need to convert it to a string
@@ -9,10 +9,13 @@ module.exports = {
   events: async () => {
     console.log('EVENTS');
     try {
-      const events = await Event.find();
-      console.log('res ', events);
+      const events = await Event.find().populate('creator');
+      console.log('result ', events);
       return events.map((event) => {
-        return transformEvent(event);
+        return {
+          ...event._doc,
+          date: dateToString(event._doc.date)
+        };
       });
     } catch (error) {
       throw error;
@@ -31,11 +34,10 @@ module.exports = {
       date: new Date(args.eventInput.date),
       creator: req.userId
     });
-    console.log('res ', event);
+    console.log('result ', event);
 
     try {
       const result = await event.save();
-      let createdEvent = transformEvent(result);
 
       const user = await User.findById(req.userId);
       if (!user) throw new Error('User not found.');
@@ -43,7 +45,10 @@ module.exports = {
       user.createdEvents.push(event);
       await user.save();
 
-      return createdEvent;
+      return {
+        ...result._doc,
+        date: dateToString(result._doc.date)
+      };
     } catch (error) {
       throw error;
     }
