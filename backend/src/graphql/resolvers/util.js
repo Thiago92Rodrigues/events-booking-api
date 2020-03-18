@@ -2,7 +2,7 @@ const DataLoader = require('dataloader');
 
 const Event = require('../../models/Event');
 const User = require('../../models/User');
-const { dateToString } = require('../../util/helpers');
+const { dateToString } = require('../../utils/helpers');
 
 const eventLoader = new DataLoader((eventIds) => {
   return fetchEvents(eventIds);

@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const graphQlSchema = require('./graphql/schema');
 const graphQlResolvers = require('./graphql/resolvers/index');
 
-const checkAuthentication = require('./middleware/authentication');
-const cors = require('./middleware/cors');
+const checkAuthentication = require('./middlewares/authentication');
+const cors = require('./middlewares/cors');
 
 const app = express();
 

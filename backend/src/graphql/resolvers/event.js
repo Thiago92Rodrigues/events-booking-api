@@ -1,6 +1,6 @@
 const Event = require('../../models/Event');
 const User = require('../../models/User');
-const { dateToString } = require('../../util/helpers');
+const { dateToString } = require('../../utils/helpers');
 
 // ._doc means get the returned data from mongoose without the metadata, with only the relevant data
 // _id is registered in the database in a MongoDB special type, so we need to convert it to a string

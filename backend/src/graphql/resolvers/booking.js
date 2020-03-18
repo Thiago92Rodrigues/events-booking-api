@@ -1,6 +1,6 @@
 const Booking = require('../../models/Booking');
 const Event = require('../../models/Event');
-const { dateToString } = require('../../util/helpers');
+const { dateToString } = require('../../utils/helpers');
 
 module.exports = {
   bookings: async (args, req) => {
