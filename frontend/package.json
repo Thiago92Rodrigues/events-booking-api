@@ -7,7 +7,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "npx prettier --config .prettierrc.js --write '**/*.+(js|css)'"
+    "format": "npx prettier --config .prettierrc.js --write '**/*.+(js|css|html)'"
   },
   "author": "Thiago Rodrigues",
   "license": "ISC",

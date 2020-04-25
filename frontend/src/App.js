@@ -47,28 +47,28 @@ class App extends Component {
           >
             <MainNavigation />
 
-            <main className="main__content">
+            <main className='main__content'>
               <Switch>
-                <Route path="/events" component={EventsPage} />
+                <Route path='/events' component={EventsPage} />
 
                 {/* if logged-in redirect to events page */}
-                {this.state.token && <Redirect from="/" to="/events" exact />}
+                {this.state.token && <Redirect from='/' to='/events' exact />}
                 {this.state.token && (
-                  <Redirect from="/auth" to="/events" exact />
+                  <Redirect from='/auth' to='/events' exact />
                 )}
 
                 {/* authentication route only exists if user is not logged-in */}
                 {!this.state.token && (
-                  <Route path="/auth" component={AuthPage} />
+                  <Route path='/auth' component={AuthPage} />
                 )}
 
                 {/* bookings route only exists if user is logged-in */}
                 {this.state.token && (
-                  <Route path="/bookings" component={BookingsPage} />
+                  <Route path='/bookings' component={BookingsPage} />
                 )}
 
                 {/* if not logged-in redirect to authentication page */}
-                {!this.state.token && <Redirect to="/auth" exact />}
+                {!this.state.token && <Redirect to='/auth' exact />}
               </Switch>
             </main>
           </AuthContext.Provider>

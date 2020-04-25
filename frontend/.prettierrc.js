@@ -6,5 +6,8 @@ module.exports = {
   singleQuote: true,
   bracketSpacing: true,
   arrowParens: 'always',
-  trailingComma: 'none'
+  trailingComma: 'none',
+  endOfLine: 'lf',
+  jsxBracketSameLine: false,
+  jsxSingleQuote: true
 };

@@ -77,26 +77,26 @@ class AuthPage extends Component {
   render() {
     return (
       <React.Fragment>
-        <span className="auth__header">
+        <span className='auth__header'>
           {this.state.isLoginMode ? 'Login' : 'Sign Up'}
         </span>
 
-        <form className="auth__form" onSubmit={this.submitHandler}>
-          <div className="form-control">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" ref={this.emailElement} />
+        <form className='auth__form' onSubmit={this.submitHandler}>
+          <div className='form-control'>
+            <label htmlFor='email'>Email</label>
+            <input type='email' id='email' ref={this.emailElement} />
           </div>
 
-          <div className="form-control">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" ref={this.passwordElement} />
+          <div className='form-control'>
+            <label htmlFor='password'>Password</label>
+            <input type='password' id='password' ref={this.passwordElement} />
           </div>
 
-          <div className="form-actions">
-            <button type="submit">Submit</button>
+          <div className='form-actions'>
+            <button type='submit'>Submit</button>
 
             {/* Switch page's mode button */}
-            <button type="button" onClick={this.switchModeHandler}>
+            <button type='button' onClick={this.switchModeHandler}>
               Switch to {this.state.isLoginMode ? 'Sign Up' : 'Login'}
             </button>
           </div>

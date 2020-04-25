@@ -55,7 +55,7 @@ const bookingChart = (props) => {
   }
 
   return (
-    <div className="chart">
+    <div className='chart'>
       <BarChart data={chartData} />
     </div>
   );
