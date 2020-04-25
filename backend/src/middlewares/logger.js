@@ -1,6 +1,6 @@
 const morgan = require('morgan');
 
-const logger = morgan(function(tokens, req, res) {
+const logger = morgan(function (tokens, req, res) {
   return [
     '[',
     tokens.method(req, res),
