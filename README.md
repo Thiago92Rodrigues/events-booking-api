@@ -24,8 +24,10 @@ There are two types of operations:
 
 ## RUNNING THE APPLICATION
 
-To run the app simply start both the backend and the frontend docker compose files.</br>
-To do that run the following command in both directories (backend and frontend).</br>
+To run the app simply start both the backend and the frontend docker compose files.
+
+To do that run the following command in both directories (backend and frontend).
+
 The server will be up in PORT `3000` and the react app in PORT `3001`.
 
 ```sh
