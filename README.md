@@ -1,6 +1,8 @@
-# EVENTS BOOKING APP
+# Events Booking App
 
-Create and delete your events; Book other user's events; View the events you have booked in a list form or in a chart with the events divided by price.
+Create and delete your events;
+Book other user's events;
+View the events you have booked in a list form or in a chart with the events divided by price.
 
 ## Stack
 
@@ -22,7 +24,7 @@ There are two types of operations:
 - `query` -> for fetching data
 - `mutation` -> for updating data (create, update, delete)
 
-## RUNNING THE APPLICATION
+## Running the Application
 
 To run the app simply start both the backend and the frontend docker compose files.
 
@@ -34,7 +36,7 @@ The server will be up in PORT `3000` and the react app in PORT `3001`.
 docker-compose up
 ```
 
-## DEPENDENCIES
+## Dependencies
 
 ### Backend
 
