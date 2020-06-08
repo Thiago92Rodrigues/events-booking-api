@@ -1,15 +1,21 @@
-# Events Booking App
+# Events Booking App 🎫
 
-Create and delete your events;
-Book other user's events;
-View the events you have booked in a list form or in a chart with the events divided by price.
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Thiago92Rodrigues/events-booking-app?color=%237519C1">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Thiago92Rodrigues/events-booking-app">
+  <img alt="License" src="https://img.shields.io/github/license/Thiago92Rodrigues/events-booking-app?color=%237519C1">
+</p>
+
+Create and delete your events;<br />
+Book other user's events;<br />
+View the events you have booked in a list form or in a chart with the events divided by price.<br />
 
 ## Stack
 
-- Backend: `Node.js` / `Express.js`
-- Frontend: `React.js`
-- API Architeture: `GraphQl`
-- Database: `MongoDB`
+- API Server: <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-green.svg?logo=node.js" alt="Node.js"></a> / <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-green.svg?logo=node.js" alt="Express"></a>
+- SPA App (Web Frontend): <a href="https://reactjs.org/"><img src="https://img.shields.io/badge/React.js-blue.svg?logo=react" alt="React.js"></a>
+- API Architeture: <a href="https://graphql.org/"><img src="https://img.shields.io/badge/GraphQL-E10098.svg?logo=graphql" alt="GraphQL"></a>
+- Database: <a href="https://www.mongodb.com/"><img src="https://img.shields.io/badge/MongoDB-47A248.svg?logo=mongodb" alt="MongoDB"></a>
 
 ## GraphQL API
 
@@ -26,11 +32,11 @@ There are two types of operations:
 
 ## Running the Application
 
-To run the app simply start both the backend and the frontend docker compose files.
+To run the app simply start both the backend and the frontend `docker-compose` files.
 
 To do that run the following command in both directories (backend and frontend).
 
-The server will be up in PORT `3000` and the react app in PORT `3001`.
+The server will be up in PORT `3000` and the SPA app in PORT `3001`.
 
 ```sh
 docker-compose up
