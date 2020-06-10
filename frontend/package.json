@@ -1,23 +1,21 @@
 {
   "name": "events-booking-frontend",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "author": "Thiago Rodrigues",
+  "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "npx prettier --config .prettierrc.js --write '**/*.+(js|css|html)'"
+    "format": "prettier --config .prettierrc.js --write '**/*.+(js|css|html)'"
   },
-  "author": "Thiago Rodrigues",
-  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Thiago92Rodrigues/events-booking-app.git"
+    "url": "git+https://github.com/th92rodr/events-booking-app.git"
   },
-  "homepage": "https://github.com/Thiago92Rodrigues/events-booking-app#readme",
   "bugs": {
-    "url": "https://github.com/Thiago92Rodrigues/events-booking-app/issues"
+    "url": "https://github.com/th92rodr/events-booking-app/issues"
   },
   "dependencies": {
     "chart.js": "^1.1.1",
@@ -41,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5"
   }
 }

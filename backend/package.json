@@ -1,24 +1,21 @@
 {
   "name": "events-booking-backend",
   "version": "1.0.0",
-  "description": "",
+  "author": "Thiago Rodrigues",
+  "license": "MIT",
   "main": "app.js",
   "scripts": {
     "start": "node src/bin/www",
     "dev": "nodemon src/bin/www",
-    "format": "npx prettier --config .prettierrc.js --write '**/*.js'",
-    "lint": "npx eslint '**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --config .prettierrc.js --write '**/*.js'",
+    "lint": "eslint '**/*.js'"
   },
-  "author": "Thiago Rodrigues",
-  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Thiago92Rodrigues/events-booking-app.git"
+    "url": "git+https://github.com/th92rodr/events-booking-app.git"
   },
-  "homepage": "https://github.com/Thiago92Rodrigues/events-booking-app#readme",
   "bugs": {
-    "url": "https://github.com/Thiago92Rodrigues/events-booking-app/issues"
+    "url": "https://github.com/th92rodr/events-booking-app/issues"
   },
   "engines": {
     "npm": "6.13.7",
@@ -36,6 +33,7 @@
   },
   "devDependencies": {
     "eslint": "^6.5.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "prettier": "^2.0.5"
   }
 }
