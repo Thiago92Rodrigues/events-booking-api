@@ -16,7 +16,21 @@
   overflow: hidden;
 }
 
-.main__navbar__logo span {
+.main__navbar__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.main__navbar__header img {
+  height: 80%;
+  width: auto;
+  margin-right: 10px;
+}
+
+.main__navbar__header span {
   margin: 0;
   font-size: 1.5rem;
   color: #e24d4d;

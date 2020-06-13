@@ -12,8 +12,9 @@ const mainNavigation = (props) => (
     {(context) => {
       return (
         <header className='main__navbar'>
-          <div className='main__navbar__logo'>
-            <span>Events Bookings</span>
+          <div className='main__navbar__header'>
+            <img src='/imgs/ticket.svg' />
+            <span>Ticket</span>
           </div>
 
           <nav className='main__navbar__items'>
