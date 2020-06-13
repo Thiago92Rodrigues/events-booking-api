@@ -1,5 +1,5 @@
 {
-  "name": "events-booking-frontend",
+  "name": "ticket_frontend",
   "version": "1.0.0",
   "author": "Thiago Rodrigues",
   "license": "MIT",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/th92rodr/events-booking-app.git"
+    "url": "git+https://github.com/th92rodr/ticket.git"
   },
   "bugs": {
-    "url": "https://github.com/th92rodr/events-booking-app/issues"
+    "url": "https://github.com/th92rodr/ticket/issues"
   },
   "dependencies": {
     "chart.js": "^1.1.1",
