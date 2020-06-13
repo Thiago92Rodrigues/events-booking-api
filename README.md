@@ -1,9 +1,9 @@
-# Events Booking App 🎫
+# Ticket 🎫
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Thiago92Rodrigues/events-booking-app?color=%237519C1">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Thiago92Rodrigues/events-booking-app">
-  <img alt="License" src="https://img.shields.io/github/license/Thiago92Rodrigues/events-booking-app?color=%237519C1">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/th92rodr/ticket?color=%237519C1">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/th92rodr/ticket">
+  <img alt="License" src="https://img.shields.io/github/license/th92rodr/ticket?color=%237519C1">
 </p>
 
 Create and delete your events;<br />
