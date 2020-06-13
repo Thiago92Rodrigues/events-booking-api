@@ -3,7 +3,7 @@ version: '3'
 services:
   server:
     image: node:12.10.0-alpine
-    container_name: events-booking-backend
+    container_name: ticket-server
     ports:
       - '3000:3000'
     links:
@@ -15,7 +15,7 @@ services:
 
   db:
     image: mongo
-    container_name: events-booking-database
+    container_name: ticket-database
     ports:
       - '27017:27017'
     logging:
