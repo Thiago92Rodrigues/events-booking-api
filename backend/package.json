@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/bin/www",
     "dev": "nodemon src/bin/www",
-    "format": "prettier --config .prettierrc.js --write '**/*.js'",
+    "pretty": "prettier --config .prettierrc.js --write '*/**/*.js'",
     "lint": "eslint '**/*.js'"
   },
   "repository": {
