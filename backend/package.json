@@ -7,19 +7,8 @@
   "scripts": {
     "start": "node src/bin/www",
     "dev": "nodemon src/bin/www",
-    "pretty": "prettier --config .prettierrc.js --write '*/**/*.js'",
-    "lint": "eslint '**/*.js'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/th92rodr/ticket.git"
-  },
-  "bugs": {
-    "url": "https://github.com/th92rodr/ticket/issues"
-  },
-  "engines": {
-    "npm": "6.13.7",
-    "node": "12.10.0"
+    "pretty": "prettier --config .prettierrc.json --write '*/**/*.js'",
+    "lint": "eslint '*/**/*.js'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
